@@ -1,21 +1,25 @@
 import random
-
-random_text = 'пидрила'
+import re
+random_text = ''
 with open('badWords.txt', encoding='utf-8') as file:
-    # random_text += file.readline()
-    pass
-# random_text = random_text.replace(',','').split(' ')[random.randint(0,len(random_text.split(' ')))]
+    bad_words = file.readline().replace(',', '').split(' ')
+    random_text += bad_words[random.randint(0,len(bad_words)-1)]
 count_of_tries = 0
 # cover the text
-cvr_text = ''
+result = ''
 for i in random_text:
-    cvr_text += i.replace(i, '_')
-print(cvr_text)
-for i in range(1, 5):
-    user_guess = input(f"Ваша {i} попытка: ")
-    count_of_found_letters = 0
-    for j in random_text:
-        if j == user_guess:
-            count_of_found_letters += 1
-            print(random_text.index(j))
-            
+    result += i.replace(i, '_')
+resultList = list(result)
+print(str(resultList))
+print(f"Сам текст: {random_text}")
+for i in range(1, 50):
+    user_guess = input(f"\nВсего слов: {len(random_text)}\nВаша {i} попытка: \n")
+    index_found = []
+    for j, name in enumerate(random_text):
+        if name == user_guess:
+            resultList.insert(j, name)
+            resultList.pop(j + 1)
+    print(resultList)
+    if resultList==list(random_text):
+        print("Поздравляю!!!\nТы угадал все слова!")
+        break
