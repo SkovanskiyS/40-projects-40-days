@@ -13,6 +13,8 @@ if random_num==int(input("Введите число: ")):
 else:
     print(f'Try Again\nЧисло: {random_num}')
 
+#without if/else and while
+
 # import random
 # def func(a):
 #     L = []
@@ -28,6 +30,9 @@ else:
 #         func(number)
 #     L.remove(num)
 # func(3)
+
+
+#primary
 
 # import random
 # random_num = random.randint(1, 10)
