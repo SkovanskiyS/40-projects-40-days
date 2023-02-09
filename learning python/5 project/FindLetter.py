@@ -1,5 +1,4 @@
 import random
-import re
 random_text = ''
 with open('badWords.txt', encoding='utf-8') as file:
     bad_words = file.readline().replace(',', '').split(' ')
