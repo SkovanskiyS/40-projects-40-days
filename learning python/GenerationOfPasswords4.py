@@ -26,4 +26,4 @@ while True:
             result += r[random.randint(0, len(r) - 1)]
     print(result)
 print('You left the loop')
-print('hello world')
+print('JAHON KNYAZ')
