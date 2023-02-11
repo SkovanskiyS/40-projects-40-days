@@ -9,10 +9,8 @@ while run:
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
             pygame.quit()
+    print('Жалда')
     pygame.display.update()
-
-
-
 
 
 
