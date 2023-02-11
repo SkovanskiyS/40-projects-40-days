@@ -16,7 +16,7 @@ animation_count = 0
 for i in range(1, 10):
     models.append(pygame.image.load(f'images/image_part_00{i}.png'))
 models.append(pygame.image.load(f'images/image_part_0010.png'))
-
+a = 0
 while running:
     clock_.tick(30)
     screen.fill((255, 255, 255))
@@ -26,6 +26,14 @@ while running:
     else:
         animation_count += 1
     pygame.display.update()
+
+    # if animation_count == 360:
+    #     animation_count = 0
+    # elif a == 9:
+    #     a = 0
+    # else:
+    #     animation_count += 1
+    #     a += 1
 
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
