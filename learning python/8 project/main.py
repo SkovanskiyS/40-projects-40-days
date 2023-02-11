@@ -16,6 +16,7 @@ square = pygame.Surface((50, 50))
 text_fonts = pygame.font.Font("fonts/Roboto-Bold.ttf",40)
 text_surface = text_fonts.render("Hello, World",True,'Green')
 
+
 while run:
     screen.blit(img,(0,0))
 
@@ -25,5 +26,3 @@ while run:
 
     pygame.display.update()
 pygame.quit()
-
-
