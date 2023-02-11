@@ -18,8 +18,8 @@ text_fonts = pygame.font.Font("fonts/Roboto-Bold.ttf",40)
 text_surface = text_fonts.render("Hello, World",True,'White','Green')
 
 while run:
-    screen.blit(img,dest=(20,30))
-    screen.blit(text_surface,(30,30))
+    screen.blit(pygame.transform.scale(img, (3, 210)),(100,20))
+    #screen.blit(text_surface,(30,30))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
