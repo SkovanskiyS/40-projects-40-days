@@ -10,7 +10,7 @@ player_speed = 5
 player_x, player_y = 100, 100
 coin_x, coin_y = 300, 150
 is_Jumped = False
-pixels_to_jump = 5
+pixels_to_jump = 7
 
 # init
 pygame.init()
@@ -50,40 +50,49 @@ while run:
     screen.blit(bg, (0, 0))
     keys = pygame.key.get_pressed()
     screen.blit(pygame.transform.scale(coin_img, (40, 40)), (coin_x, coin_y))
-    if keys[pygame.K_UP] and player_x > 5:
-        player_x -= player_speed
-        print('вверх')
-        screen.blit(pygame.transform.scale(walks[1], (67, 120)), (player_y, player_x))
-    elif keys[pygame.K_DOWN] and player_x <= 450:
-        player_x += player_speed
-        print('вниз')
-        screen.blit(pygame.transform.scale(walks[2], (67, 120)), (player_y, player_x))
-    elif keys[pygame.K_LEFT] and player_y > 5:
-        print(player_y)
+    if keys[pygame.K_UP] and player_y > 5:
         player_y -= player_speed
-        print('влево')
-        screen.blit(pygame.transform.scale(walks[3], (67, 120)), (player_y, player_x))
-    elif keys[pygame.K_RIGHT] and player_y <= 530:
+        print('вверх')
+        screen.blit(pygame.transform.scale(walks[1], (67, 120)), (player_x, player_y))
+    elif keys[pygame.K_DOWN] and player_y <= 450:
         player_y += player_speed
+        print('вниз')
+        screen.blit(pygame.transform.scale(walks[2], (67, 120)), (player_x, player_y))
+    elif keys[pygame.K_LEFT] and player_x > 5:
+        player_x -= player_speed
+        print('влево')
+        screen.blit(pygame.transform.scale(walks[3], (67, 120)), (player_x, player_y))
+    elif keys[pygame.K_RIGHT] and player_x <= 530:
+        player_x += player_speed
         print('направо')
-        screen.blit(pygame.transform.scale(walks[4], (67, 120)), (player_y, player_x))
+        screen.blit(pygame.transform.scale(walks[4], (67, 120)), (player_x, player_y))
     else:
-        screen.blit(pygame.transform.scale(walks[0], (67, 120)), (player_y, player_x))
+        screen.blit(pygame.transform.scale(walks[0], (67, 120)), (player_x, player_y))
 
+    # jump physic
     if not is_Jumped:
         if keys[pygame.K_SPACE]:
-            is_Jumped=True
+            is_Jumped = True
     else:
-        pass
-        #player_y += pixels_to_jump
-        #screen.blit(pygame.transform.scale(walks[0], (67, 120)), (player_y, player_x))
+        if pixels_to_jump >= -7:
+            if pixels_to_jump > 0:
+                player_y -= (pixels_to_jump ** 2) / 2
+            else:
+                player_y += (pixels_to_jump ** 2) / 2
+            pixels_to_jump -= 1
+        else:
+            is_Jumped = False
+            pixels_to_jump = 7
 
+        # player_y += pixels_to_jump
+        # screen.blit(pygame.transform.scale(walks[0], (67, 120)), (player_y, player_x))
 
-    # check for coin
-    if coin_x == player_x or coin_y == player_y:
-        coin_x += random.randint(30, 400)
-        coin_y += random.randint(30, 400)
+    print(coin_x)
+    print(player_x)
+   # check for coin
+    if coin_x - 15 <= player_x <= coin_x + 15 and coin_y - 50 <= player_y <= coin_y + 50:
         print('да')
+
     for events in pygame.event.get():
         if events.type == pygame.QUIT:
             run = False
