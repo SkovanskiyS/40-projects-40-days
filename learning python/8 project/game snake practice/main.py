@@ -57,7 +57,6 @@ while run:
         screen.blit(pygame.transform.scale(walks[1], (67, 120)), (player_x, player_y))
     elif keys[pygame.K_DOWN] and player_y <= 450:
         player_y += player_speed
-        player_x += player_speed
         print('вниз')
         screen.blit(pygame.transform.scale(walks[2], (67, 120)), (player_x, player_y))
     elif keys[pygame.K_LEFT] and player_x > 5:

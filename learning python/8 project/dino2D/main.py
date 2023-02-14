@@ -54,8 +54,7 @@ clock = pygame.time.Clock()
 while running:
     screen.fill((173, 216, 230))
     screen.blit(walking[i], (WIDTH / 2, HEIGHT / 2))
-    print(i)
-    print(w_length)
+
     if i >= w_length-1:
         i = 0
     else:
