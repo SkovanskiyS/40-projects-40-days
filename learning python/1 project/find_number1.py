@@ -1,5 +1,5 @@
 import random
-random_num = random.randint(1, 10)
+random_num = random.randint(1, 100)
 user_number = int(input('Введите число: '))
 print(random_num)
 while user_number != random_num:

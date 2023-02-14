@@ -12,3 +12,4 @@ match user_input:
 if user == "Камень" and pc == "Ножницы" or user == "Бумага" and pc == "Камень" or user == "Ножницы" and pc == "Бумага": print("Вы выиграли")
 elif user==pc:print('Ничья!')
 else:print("Вы проиграли")
+

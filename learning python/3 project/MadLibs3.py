@@ -10,4 +10,3 @@ with open('badWords.txt', encoding='utf-8') as file:
                 a += 1
 for i in text:
     print(i.replace(' '," "+random.choice(last_txt.split(' '))+" "),end= '')
-

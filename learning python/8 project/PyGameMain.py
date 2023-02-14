@@ -10,6 +10,8 @@ pygame.display.set_caption('Glitc-in-the-Head')  # GITH
 run = True
 square = pygame.Surface((50, 50))
 
+
+
 # square.fill('Blue')
 # screen.blit(square, (W / 2-25, H / 2-25))
 # pygame.display.update()

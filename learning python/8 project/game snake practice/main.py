@@ -47,15 +47,17 @@ coin_img = pygame.image.load('image/coin.png')
 pygame.display.update()
 
 while run:
-    screen.blit(bg, (0, 0))
+
     keys = pygame.key.get_pressed()
     screen.blit(pygame.transform.scale(coin_img, (40, 40)), (coin_x, coin_y))
+    screen.blit(bg, (0, 0))
     if keys[pygame.K_UP] and player_y > 5:
         player_y -= player_speed
         print('вверх')
         screen.blit(pygame.transform.scale(walks[1], (67, 120)), (player_x, player_y))
     elif keys[pygame.K_DOWN] and player_y <= 450:
         player_y += player_speed
+        player_x += player_speed
         print('вниз')
         screen.blit(pygame.transform.scale(walks[2], (67, 120)), (player_x, player_y))
     elif keys[pygame.K_LEFT] and player_x > 5:
@@ -68,7 +70,11 @@ while run:
         screen.blit(pygame.transform.scale(walks[4], (67, 120)), (player_x, player_y))
     else:
         screen.blit(pygame.transform.scale(walks[0], (67, 120)), (player_x, player_y))
-
+    # if keys[pygame.K_RIGHT] and pygame[pygame.K_DOWN]:
+    #     player_x += player_speed
+    #     player_y += player_speed
+    #     print('ДЫА')
+    #     screen.blit(pygame.transform.scale(walks[4], (67, 120)), (player_x, player_y))
     # jump physic
     if not is_Jumped:
         if keys[pygame.K_SPACE]:

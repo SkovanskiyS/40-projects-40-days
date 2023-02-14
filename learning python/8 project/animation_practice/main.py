@@ -18,7 +18,7 @@ for i in range(1, 10):
 models.append(pygame.image.load(f'images/image_part_0010.png'))
 a = 0
 while running:
-    clock_.tick(30)
+    clock_.tick(15)
     screen.fill((255, 255, 255))
     screen.blit(models[animation_count], (100, 100))
     if animation_count == 9:
