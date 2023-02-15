@@ -1,6 +1,8 @@
 import random
 import time
 
+#ЗАЛУПА КОРОЧ
+
 import pygame
 import pymunk.pygame_util
 
