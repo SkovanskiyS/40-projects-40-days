@@ -3,19 +3,24 @@ import time
 import pygame, os
 import random
 
+import screeninfo
+import win32api
+
 # variables
-WIDTH = 1400
-HEIGHT = 700
+WIDTH = win32api.GetSystemMetrics(0)
+HEIGHT = win32api.GetSystemMetrics(1)
 running = True
 FPS = 30
 # init pygame
 pygame.init()
-
+player_x = 300
+player_y = 700
 
 # set screen settings
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
-#uploading images
+
+# uploading images
 walking, w_length = [], 0
 standing, s_length = [], 0
 fighting, f_length = [], 0
@@ -52,19 +57,32 @@ i = 0
 clock = pygame.time.Clock()
 
 while running:
-    screen.fill((173, 216, 230))
-    screen.blit(walking[i], (WIDTH / 2, HEIGHT / 2))
-
-    if i >= w_length-1:
+    # screen.blit(pygame.image.load(
+    #     r"C:\Users\jahon\Documents\GitHub\40-projects-40-days\learning python\8 project\game snake practice\image\background.jpg"),
+    #     (0, 0))
+    pressed_key = pygame.key.get_pressed()
+    screen.fill((255,255,255))
+    elapsed = 0
+    if pressed_key[pygame.K_RIGHT]:
+        player_x += 30
+        screen.blit(walking[i], (player_x, player_y))
+    elif pressed_key[pygame.K_LEFT]:
+        player_x -= 30
+        screen.blit(pygame.transform.flip(walking[i],True,False),(player_x,player_y))
+    else:
+        elapsed = pygame.time.get_ticks() - elapsed
+        if elapsed>10000:
+            screen.blit(standing[i], (player_x, player_y))
+    if i >= s_length - 1:
         i = 0
     else:
         i += 1
     pygame.display.update()
 
-    clock.tick(20)
+    clock.tick(30)
 
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+        if event.type == pygame.QUIT or pressed_key[pygame.K_ESCAPE]:
             running = False
 
 pygame.quit()
