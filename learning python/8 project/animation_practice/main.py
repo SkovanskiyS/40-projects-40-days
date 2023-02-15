@@ -1,41 +1,43 @@
+import random
 import time
 
 import pygame
 
 pygame.init()
-screen = pygame.display.set_mode((500, 500))
+screen = pygame.display.set_mode((700, 700))
 running = True
-player_x = 100
-playex_y = 100
-
+X = 100
+Y = 600
+speed = 10
 models = []
 clock_ = pygame.time.Clock()
-
+FPS = 60
+W_RECT = 60
+H_RECT = 4
 animation_count = 0
 
 for i in range(1, 10):
     models.append(pygame.image.load(f'images/image_part_00{i}.png'))
 models.append(pygame.image.load(f'images/image_part_0010.png'))
-a = 0
+
 while running:
-    clock_.tick(15)
-    screen.fill((255, 255, 255))
-    screen.blit(models[animation_count], (100, 100))
-    if animation_count == 9:
-        animation_count = 0
-    else:
-        animation_count += 1
+
+    get_pressed = pygame.key.get_pressed()
+    screen.fill((0, 0, 0))
+    if X <= -70:
+        X = 700
+    elif X >= 700:
+        X = -70
+
+    if get_pressed[pygame.K_RIGHT]:
+        X += speed
+    elif get_pressed[pygame.K_LEFT]:
+        X -= speed
+    pygame.draw.rect(screen, "White", (X, Y, W_RECT, H_RECT))
     pygame.display.update()
-
-    # if animation_count == 360:
-    #     animation_count = 0
-    # elif a == 9:
-    #     a = 0
-    # else:
-    #     animation_count += 1
-    #     a += 1
-
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
             running = False
+
+    clock_.tick(FPS)
 pygame.quit()
