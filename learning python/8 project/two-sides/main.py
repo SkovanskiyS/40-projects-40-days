@@ -17,10 +17,11 @@ right_side.fill("Black")
 rocket_x = left_side.get_width() // 2
 rocket_y = left_side.get_height() // 2
 
+
 def main():
     running, left_active, right_active = True, False, False
     rocket_left = Rocket(left_side, rocket_x, rocket_y, 10)
-    rocket_right = Rocket(right_side, right_side.get_width()*1.5, rocket_y, 10)
+    rocket_right = Rocket(right_side, right_side.get_width() * 1.5, rocket_y, 10)
     while running:
         screen.blit(right_side, (left_side.get_width(), 0))
         screen.blit(left_side, (0, 0))
