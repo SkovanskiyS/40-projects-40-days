@@ -12,9 +12,9 @@ class Rocket:
         self.speed = speed
 
     def update(self):
-        self.r_y += self.speed
+        self.r_y -= self.speed
         if self.r_y<0:
-            print('hello world')
+            self.r_y = 300
 
     def draw(self,screen,color):
         pygame.draw.rect(screen,color,(self.r_x,self.r_y,self.width,self.height))
