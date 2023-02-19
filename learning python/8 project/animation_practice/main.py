@@ -52,3 +52,6 @@ while running:
     pygame.display.update()
     clock_.tick(FPS)
 pygame.quit()
+
+for i in range(100):
+    print(i)
