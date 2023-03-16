@@ -19,7 +19,6 @@ player_y = 700
 # set screen settings
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
-
 # uploading images
 walking, w_length = [], 0
 standing, s_length = [], 0
@@ -61,17 +60,17 @@ while running:
     #     r"C:\Users\jahon\Documents\GitHub\40-projects-40-days\learning python\8 project\game snake practice\image\background.jpg"),
     #     (0, 0))
     pressed_key = pygame.key.get_pressed()
-    screen.fill((255,255,255))
+    screen.fill((255, 255, 255))
     elapsed = 0
     if pressed_key[pygame.K_RIGHT]:
         player_x += 30
         screen.blit(walking[i], (player_x, player_y))
     elif pressed_key[pygame.K_LEFT]:
         player_x -= 30
-        screen.blit(pygame.transform.flip(walking[i],True,False),(player_x,player_y))
+        screen.blit(pygame.transform.flip(walking[i], True, False), (player_x, player_y))
     else:
         elapsed = pygame.time.get_ticks() - elapsed
-        if elapsed>10000:
+        if elapsed > 10000:
             screen.blit(standing[i], (player_x, player_y))
     if i >= s_length - 1:
         i = 0
