@@ -30,14 +30,14 @@
 # pygame.quit()
 
 import pygame
-
+from sys import exit
 screen = pygame.display.set_mode((500,500))
 running = True
 while running:
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
             pygame.quit()
-            break
+            exit()
     pygame.display.update()
 
 pygame.quit()
