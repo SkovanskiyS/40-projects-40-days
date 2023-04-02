@@ -37,6 +37,7 @@ while running:
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
             pygame.quit()
+            break
     pygame.display.update()
 
 pygame.quit()
