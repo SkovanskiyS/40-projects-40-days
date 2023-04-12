@@ -31,13 +31,16 @@
 
 import pygame
 from sys import exit
+
+
 screen = pygame.display.set_mode((500,500))
+pygame.display.set_caption("Blade Runner")
 running = True
+
 while running:
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
-            pygame.quit()
-            exit()
+            running = False
     pygame.display.update()
 
 pygame.quit()
