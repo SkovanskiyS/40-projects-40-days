@@ -23,16 +23,18 @@ text_rect = text_surface.get_rect(topleft=(350, 10))
 # player
 player_sprite = [pygame.image.load(fr'objects/player/stay{sprite}.png').convert_alpha() for sprite in range(1, 8)]
 j = 0
-player_rect = pygame.transform.scale(player_sprite[0], (70, 70)).get_rect(center=(0, 0))
-
+player_rect = pygame.transform.scale(player_sprite[0], (70, 70)).get_rect(topleft=(250, 100))
+player_gravity = 10
+jumped = False
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
     if j >= 7: j = 0
     p_surface = pygame.transform.scale(player_sprite[j], (70, 70))
     pressed = pygame.key.get_pressed()
-    print(pressed)
+
     # controller
     if pressed[pygame.K_d] and player_rect.right <= 850:
         player_rect.left += 5
@@ -46,23 +48,39 @@ while running:
     # background
     screen.blit(pygame.image.load(r'objects/bg/bg.png').convert(), (0, 0))
     # show up
-    screen.blit(p_surface, player_rect)
+
     screen.blit(text_surface, text_rect)
     screen.blit(font_text.render(str(SCORE), True, 'Red'), (550, 10))
     screen.blit(transformed_surface, statue_rect)
 
-    # ---- DRAWING ------
-    # player rect
-    pygame.draw.rect(screen, 'white', player_rect, 1)
+    if not jumped:
+        if pressed[pygame.K_SPACE]:
+            jumped = True
+    else:
+        if player_gravity >= -10:
+            if player_gravity > 0:
+                player_rect.y -= (player_gravity ** 2) / 4
+            else:
+                player_rect.y += (player_gravity ** 2) / 4
+            player_gravity -= 1
+        else:
+            jumped = False
+            player_gravity = 10
 
-    # statue draw
-    pygame.draw.rect(screen, 'white', statue_rect, 1)
+    screen.blit(p_surface, player_rect)
 
-    # player line draw
-    pygame.draw.aaline(screen, 'Red', player_rect.center, pygame.mouse.get_pos(), 10)
-
-    # text draw
-    pygame.draw.rect(screen, 'white', text_rect, 1)
+    # # ---- DRAWING ------
+    # # player rect
+    # pygame.draw.rect(screen, 'white', player_rect, 1)
+    #
+    # # statue draw
+    # pygame.draw.rect(screen, 'white', statue_rect, 1)
+    #
+    # # player line draw
+    # pygame.draw.aaline(screen, 'Red', player_rect.center, pygame.mouse.get_pos(), 10)
+    #
+    # # text draw
+    # pygame.draw.rect(screen, 'white', text_rect, 1)
 
     pygame.display.update()
     clock.tick(FPS)
