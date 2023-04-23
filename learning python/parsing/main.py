@@ -51,13 +51,5 @@
 #
 import time
 
-import requests as req
-from bs4 import BeautifulSoup
-url = 'https://s.amizone.net/'
-while True:
-    print('1')
-    html = req.get(url)
-    soup = BeautifulSoup(html.text, 'lxml')
-    print(soup.div.input['value'])
-    
-
+print(bin(0b0001+0b0010))
+print(eval('0b11'))
