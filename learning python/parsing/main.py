@@ -50,6 +50,3 @@
 # import time
 #
 import time
-
-print(bin(0b0001+0b0010))
-print(eval('0b11'))
