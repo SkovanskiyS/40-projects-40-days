@@ -13,6 +13,7 @@ if random_num==int(input("Введите число: ")):
 else:
     print(f'Try Again\nЧисло: {random_num}')
 
+
 #without if/else and while
 
 # import random
