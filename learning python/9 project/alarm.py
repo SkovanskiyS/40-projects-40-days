@@ -1,25 +1,26 @@
-import math
-import time
-import tkinter as tk
-import datetime
 import string
+from mpmath import mp
 
-display = tk.Tk()
+userPI = input('Enter number PI which was done by yourself: ')
 
-display.title('hello world')
 
-rightOne = '3.1455926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679'
-shouldBeChecked = '3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679'
-limit = input('Enter the limit length of the number PI')
 def filter(usersPI):
     clean_text = ''.join(char for char in usersPI if char not in string.punctuation).replace(' ', '').replace('\t', '')
-    return clean_text
+    mp.dps = len(clean_text) + 1
+    numberPI = ''.join(char2 for char2 in str(mp.pi) if char2 not in string.punctuation).replace(' ', '').replace('\t','')
+    numberPI = numberPI[0:len(numberPI) - 1]
+    return [clean_text, numberPI]
+
 
 def check(userNumber):
-    userPi = filter(userNumber)
-    for i, j in enumerate(rightOne):
-        if j != shouldBeChecked[i]:
-            print(f'Неверно: computer {j} and user\'s {shouldBeChecked[i]}')
+    user_PI_and_original_PI = filter(userNumber)
+    for index, originalPI in enumerate(user_PI_and_original_PI[1]):
+        if originalPI != user_PI_and_original_PI[0][index]:
+            print(f'Неверно: original {originalPI} and user\'s {user_PI_and_original_PI[0][index]}')
         else:
-            print(f'Верно: computer {j} and user\'s {shouldBeChecked[i]}')
-print(math.pi)
+            print(f'Верно: original {originalPI} and user\'s {user_PI_and_original_PI[0][index]}')
+    mp.dps = len(user_PI_and_original_PI[0]) + 1
+    print(f'\n\tYour PI number: {user_PI_and_original_PI[0]}\n\tComputer PI number: {mp.pi}')
+
+
+check(userPI)
