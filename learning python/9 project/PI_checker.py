@@ -20,7 +20,7 @@ def check(userNumber):
         else:
             print(f'Верно: original {originalPI} and user\'s {user_PI_and_original_PI[0][index]}')
     mp.dps = len(user_PI_and_original_PI[0]) + 1
-    print(f'\n\tYour PI number: {user_PI_and_original_PI[0]}\n\tComputer PI number: {mp.pi}')
+    print(f'\n\tYour PI number: {user_PI_and_original_PI[0]}\n\tComputer PI number: {user_PI_and_original_PI[1]}')
 
 
 check(userPI)
